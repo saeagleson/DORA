@@ -13,18 +13,17 @@ const Register = () => {
 
     const[username, setUsername] = useState<string>('');
 
-    const[email, setEmail] = useState('');
-    const[password, setPassword] = useState('');
-    const[confirmPassword, setConfirmPassword] = useState('');
+    const[email, setEmail] = useState<string>('');
+    const[password, setPassword] = useState<string>('');
+    const[confirmPassword, setConfirmPassword] = useState<string>('');
     // Added name, email, and password to errors (may cause errors)
-    const[errors, setErrors] = useState({});
-    const[loading, setLoading] = useState(false);
-    const[avatarUrl,setAvatar] = useState('');
+    const[errors, setErrors] = useState<{username:string; email:string; password:string; confirmPassword:string}>({username:'',email:'',password:'',confirmPassword:''});
+    const[loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
     const validateForm=()=>{
         const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const newErrors={};
+        const newErrors:any = {};
 
         if(!username.trim()){
           newErrors.username='Username is required!';
@@ -45,7 +44,7 @@ const Register = () => {
         }
     }
 
-    const handleSubmit=async(e)=>{
+    const handleSubmit=async(e:any)=>{
         e.preventDefault();
         setLoading(true);
         try{
@@ -63,7 +62,7 @@ const Register = () => {
                 email,
             })
             router.push('/maps');
-            setErrors({});
+            setErrors({username:'', email:'', password:'', confirmPassword:''});
 
             alert("Registered sucessfully :)");
         }catch(error){

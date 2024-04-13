@@ -9,18 +9,16 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
 
-    const[email, setEmail] = useState('');
-    const[password, setPassword] = useState('');
+    const[email, setEmail] = useState<string>('');
+    const[password, setPassword] = useState<string>('');
     // Added name, email, and password to errors (may cause errors)
-    const[errors, setErrors] = useState({});
-    const[loading, setLoading] = useState(false);
-    const[loggedIn, setLoggedIn] = useState(false);
-    const[avatarUrl,setAvatar] = useState('');
+    const[errors, setErrors] = useState<{email:string;password:string}>({email:'',password:''});
+    const[loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
     const validateForm=()=>{
         const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const newErrors={};
+        const newErrors:any={};
 
         if(!email.trim() || !emailRegex.test(email)){
             newErrors.email = 'Email is invalid!';
@@ -35,7 +33,7 @@ const Login = () => {
         }
     }
 
-    const handleSubmit=async(e)=>{
+    const handleSubmit=async(e:any)=>{
         e.preventDefault();
         setLoading(true);
         try{
@@ -50,7 +48,7 @@ const Login = () => {
             if(user){
                 router.push('/maps');
             }
-            setErrors({});
+            setErrors({email:'', password:''});
 
             alert("Logged In Sucessfully :)");
         }catch(error){
@@ -91,7 +89,7 @@ const Login = () => {
                     }
                     </button>
 
-                <span>Don't have an Account?{' '}
+                <span>Don&apos;t have an Account?{' '}
                     <Link href="/" className="text-blue-600 hover:text-blue-800 hover:underline">
                         Register
                     </Link>

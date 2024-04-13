@@ -11,7 +11,7 @@ import { doc, getDoc } from 'firebase/firestore';
 
 const Maps = () => {
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState<any>({});
     const auth = getAuth(app);
     const router = useRouter();
 
@@ -35,7 +35,7 @@ const Maps = () => {
         return () => unsubscribe();
       }, [auth, router]); 
 
-    const handleLogout=(e)=>{
+    const handleLogout=(e:any)=>{
         e.preventDefault();
         signOut(auth).then(()=>{
             router.push('/login');
