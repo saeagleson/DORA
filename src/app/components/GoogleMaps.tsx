@@ -3,7 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import MapIcon from './MapIcon'
 
-const GoogleMaps = ({ missions }) => {
+interface Props {
+    missions: any
+}
+
+const GoogleMaps: React.FC<Props> = ({ missions }) => {
 
     console.log("in googleMaps")
     console.log(missions)
@@ -41,7 +45,7 @@ const GoogleMaps = ({ missions }) => {
         // Check if mapInstance exists and missions are available
         if (mapInstance && missions.length > 0) {
             // Iterate over missions array and create map icons
-            missions.forEach((mission) => {
+            missions.forEach((mission:any) => {
                 const marker = new window.google.maps.Marker({
                     position: { lat: mission.location._lat, lng: mission.location._long }, // Use mission coordinates
                     map: mapInstance,
