@@ -17,7 +17,7 @@ const Register = () => {
     const[password, setPassword] = useState<string>('');
     const[confirmPassword, setConfirmPassword] = useState<string>('');
     const[publicID,setPublicID] = useState<string>('');
-    const[currency,setCurrency] = useState(0)
+    const[currency,setCurrency] = useState(100)
     // Added name, email, and password to errors (may cause errors)
     const[errors, setErrors] = useState<{username:string; email:string; password:string; confirmPassword:string}>({username:'',email:'',password:'',confirmPassword:''});
     const[loading, setLoading] = useState<boolean>(false);

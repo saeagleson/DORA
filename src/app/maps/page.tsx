@@ -97,7 +97,7 @@ return(
         </nav>
         <main className="flex flex-col text-center flex-auto bg-[url('/menu-bg-mobile.png')] lg:bg-[url('/menu-bg.png')] bg-cover bg-no-repeat">
             
-            <div className="mt-5 grid place-items-center h-[50px] font-bold text-gray-300 text-xl">
+            <div className="mt-5 grid place-items-center h-[50px] font-bold text-black-300 text-xl">
                 Click Below to Start a Mission!
             </div>
 
