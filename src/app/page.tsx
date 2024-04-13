@@ -123,11 +123,11 @@ const Register = () => {
 
                 {/* Log In Button */}
                 <div className="mt-10">Already have an account?{' '}</div>
-                <div className="">
-                    <button href="/login" className="w-[200px] h-[40px] leading-[40px] bg-white rounded-[15px] border border-white hover:bg-gray-100 transition ease-out duration-400">
+                
+                    <Link href="/login" className="mx-auto w-[200px] h-[40px] leading-[40px] bg-white rounded-[15px] border border-white hover:bg-gray-100 transition ease-out duration-400">
                         LOGIN
-                    </button>
-                </div>
+                    </Link>
+                
                 </form>
                 
             </div>
