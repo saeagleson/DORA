@@ -133,9 +133,9 @@ const Register = () => {
                 {/* Log In Button */}
                 <div className="">Already have an account?{' '}</div>
                 
-                    <Link href="/login" className="mx-auto w-[200px] h-[40px] leading-[40px] bg-white rounded-[15px] border border-white hover:bg-gray-100 transition ease-out duration-400">
+                    <button href="/login" className="w-[200px] h-[40px] m-6 leading-[40px] bg-white rounded-[15px] border border-black hover:bg-gray-100 transition ease-out duration-400 shadow-lg shadow-gray-500/50">
                         LOGIN
-                    </Link>
+                    </button>
                 
                 </form>
 
