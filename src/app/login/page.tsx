@@ -1,24 +1,20 @@
 'use client'
 import React from 'react'
 import { useState } from 'react'
-import { useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { auth, firestore } from './firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore'
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
-const Register = () => {
-
-    const[username, setUsername] = useState<string>('');
+const Login = () => {
 
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-    const[confirmPassword, setConfirmPassword] = useState('');
     // Added name, email, and password to errors (may cause errors)
     const[errors, setErrors] = useState({});
     const[loading, setLoading] = useState(false);
+    const[loggedIn, setLoggedIn] = useState(false);
     const[avatarUrl,setAvatar] = useState('');
     const router = useRouter();
 
@@ -26,17 +22,11 @@ const Register = () => {
         const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const newErrors={};
 
-        if(!username.trim()){
-          newErrors.username='Username is required!';
-        }
         if(!email.trim() || !emailRegex.test(email)){
             newErrors.email = 'Email is invalid!';
         }
         if(password.length<6){
             newErrors.password = "Password must be at least 6 characters!";
-        }
-        if(password!==confirmPassword){
-            newErrors.confirmPassword = "Password does not match!";
         }
 
         setErrors(newErrors)
@@ -54,43 +44,27 @@ const Register = () => {
                 setLoading(false);
                 return;
             }
-            const userCredential = await createUserWithEmailAndPassword(auth,email,password);
+            const userCredential = await signInWithEmailAndPassword(auth,email,password);
             const user = userCredential.user;
 
-            const docRef = doc(firestore, 'users', user.uid);
-            await setDoc(docRef,{
-                username,
-                email,
-            })
-            router.push('/maps');
+            if(user){
+                router.push('/maps');
+            }
             setErrors({});
 
-            alert("Registered sucessfully :)");
+            alert("Logged In Sucessfully :)");
         }catch(error){
-            console.log("Error Registering: ", error);
+            console.log("Error Logging In:", error);
         }
         setLoading(false);
-    }
-
-    function capitalizeFirstLetter(string:string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     return (
         <div>
             <div className=''>
                 
-                <span>Register</span>
+                <span>Log In</span>
                 <form onSubmit={handleSubmit} className="w-[200px] flex flex-col gap-5">
-
-                {/* Username */}
-                <div>
-                    <label>
-                        <span>Username</span>
-                    </label>
-                    <input type="text" placeholder="Enter Username" value={username} onChange={(e)=>setUsername(capitalizeFirstLetter(e.target.value.trim()))}/>
-                    {errors.username && <span className='text-sm text-red-600'>{errors.username}</span>}
-                </div>
 
                 {/* Email */}
                 <div>
@@ -110,26 +84,16 @@ const Register = () => {
                 {errors.password && <span className='text-sm text-red-500'>{errors.password}</span>}
                 </div>
 
-                {/* Confirm Password */}
-                <div>
-                <label>
-                    <span>Confirm Password</span>
-                </label>
-                <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange = {(e)=>setConfirmPassword(e.target.value)}/>
-                {errors.confirmPassword && <span className='text-sm text-red-500'>{errors.confirmPassword}</span>}
-                </div>
-                
-
                 {/* Sign Up Button */}
                 <button type="submit">
                     {
-                        loading ? <span className="loading loading-spinner loading-sm"></span> : "Register"
+                        loading ? "Loading..." : "Login"
                     }
                     </button>
 
-                <span>Already have an Account?{' '}
-                    <Link href="/login" className="text-blue-600 hover:text-blue-800 hover:underline">
-                        Login
+                <span>Don't have an Account?{' '}
+                    <Link href="/" className="text-blue-600 hover:text-blue-800 hover:underline">
+                        Register
                     </Link>
 
                 </span>
@@ -139,4 +103,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Login
