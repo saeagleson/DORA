@@ -65,7 +65,7 @@ const Maps = () => {
         fetchMissions(); // Call fetchMissions on component mount
     }, []);
 
-    const CashOut = async(e) => {
+    const CashOut = async(e:any) => {
         e.preventDefault();
         onAuthStateChanged(auth, async (user) => {
             if(user)
