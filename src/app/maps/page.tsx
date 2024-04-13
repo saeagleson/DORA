@@ -65,13 +65,8 @@ const Maps = () => {
                 </div>
 
                 {/* Map Goes Here*/}
-<<<<<<< HEAD
-                <div className="grid place-items-center flex-auto font-bold text-[30px]">
-                    
-=======
                 <div className="grid place-items-center">
                     <GoogleMaps/>
->>>>>>> 05db70b8885a75fe2baa9ed2e6d69972aca7e860
                 </div>
             </main>
         </div>
