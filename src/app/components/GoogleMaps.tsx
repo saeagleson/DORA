@@ -21,7 +21,6 @@ const GoogleMaps = () => {
             };
 
             // MARKER
-            36.06929715362643, -94.17600312141396
 
             const options: google.maps.MapOptions = {
                 center: locationInMap,
