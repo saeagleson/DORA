@@ -86,18 +86,18 @@ const Maps = () => {
 
 return(
     <div className="flex flex-col h-screen font-['Comic Sans']">
-        <nav className="grid grid-cols-2 border-b-2 border-black h-auto px-1">
-            <div className="text-xl p-3">
+        <nav className="grid grid-cols-2 border-b-2 border-black h-auto pr-1">
+            <div className="text-xl font-bold p-4 py-4">
                 {user ? user.username : "???"}
             </div>
                              
-            <div className="text-end p-4 pr-1">
+            <div className="text-end pt-8 pr-1">
                 Currency: {user ? user.currency : "???"}
             </div>            
         </nav>
         <main className="flex flex-col text-center bg-blue-300 flex-auto">
             
-            <div className="mt-5 grid place-items-center h-[50px] text-[25px]">
+            <div className="mt-5 grid place-items-center h-[50px] text-xl">
                 Click Below to Start a Mission!
             </div>
 
