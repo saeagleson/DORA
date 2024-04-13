@@ -56,7 +56,7 @@ const GoogleMaps = ({ missions }) => {
     }, [mapInstance, missions]);
 
     return (
-        <div className="h-[600px] w-[800px]" ref={mapRef}>
+        <div className="h-full w-full" ref={mapRef}>
             Google Maps
         </div>
     );

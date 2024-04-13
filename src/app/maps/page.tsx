@@ -86,7 +86,7 @@ const Maps = () => {
 
 
     return(
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen font-['Comic Sans']">
             <nav className="text-center border border-b-2 border-black h-auto p-5">
             <p className="text-[50px]">
                 Welcome, {user ? user.username : "???"}
@@ -105,10 +105,16 @@ const Maps = () => {
                     Click Below to Start a Mission!
                 </div>
 
-                {/* Map Goes Here*/}
-                <div className="grid place-items-center">
-                    <GoogleMaps missions={missions}/>
+                
+                <div className="h-3/4 flex justify-center items-center">
+                    <div className="h-full w-full px-5">
+                        {/* Map Goes Here*/}
+                        <div className="h-full grid place-items-center">
+                            <GoogleMaps missions={missions}/>
+                        </div>
+                    </div>
                 </div>
+
                 <div>
                     <form onSubmit={CashOut}>
                         <input value={publicID} onChange ={(e)=>setPublicID(e.target.value)}></input>
