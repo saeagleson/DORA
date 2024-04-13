@@ -29,7 +29,7 @@ const Register = () => {
         const newErrors={};
 
         if(!username.trim()){
-          newErrors.username='First name is required!';
+          newErrors.username='Username is required!';
       }
         if(!firstName.trim()){
             newErrors.firstName='First name is required!';
@@ -87,69 +87,62 @@ const Register = () => {
     }
 
     return (
-        <div>
-            <div className="max-w-[400px] w-full mx-auto mt-10 bg-blue-100 p-6 text-center font-['Aptos (Body)']">
+        <div className="h-screen grid place-items-center bg-sky-200">
+            <div className="flex flex-col w-full overflow-x-hidden mx-auto p-6 text-center font-['Comic Sans'] md:text-xl">
                 
                 {/* DORA (title) */}
-                <div className="mt-10 text-4xl">DORA</div>
+                <div className="text-blue-600  font-bold text-5xl md:text-7xl">DORA</div>
 
-                {/* Register (header)) */}
-                <header className="mt-9 text-xl">Sign Up Now</header>
-                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                {/* Sign Up (header)) */}
+                <header className="text-blue-500 font-bold mt-24 text- text-xl">Sign Up Now</header>
+                <form onSubmit={handleSubmit} className=" flex flex-col gap-6">
 
                 {/* Username */}
-                <div>
-                    <div className="mt-7 text-black text-[15px] font-['Lucida Sans']">
-                        <span>Username</span>
-                    </div>
-                    <input type="text" placeholder="Enter Username" value={username} onChange={(e)=>setUsername(capitalizeFirstLetter(e.target.value.trim()))}/>
-                    {errors.username && <span className='text-sm text-red-600'>{errors.username}</span>}
+                <div className="mt-7 text-black">                
+                    <input type="text" placeholder="Enter Username" className="bg-sky-200 border-b-2 border-gray-500 pl-1" value={username} onChange={(e)=>setUsername(capitalizeFirstLetter(e.target.value.trim()))}/>
+                    {errors.username && <div className='mt-1 text-sm text-red-500'>{errors.username}</div>}
                 </div>
 
         
                 {/* Email */}
                 <div>
-                <div>
-                    <span>Email</span>
-                </div>
-                <input type="email" placeholder="Enter Email" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
-                {errors.email && <span className='text-sm text-red-500'>{errors.email}</span>}
+                    <input type="email" placeholder="Enter Email" className="bg-sky-200 border-b-2 border-gray-500 pl-1" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
+                    {errors.email && <div className='mt-1 text-sm text-red-500'>{errors.email}</div>}
                 </div>
 
                 {/* Password */}
                 <div>
-                <div>
-                    <span>Password</span>
-                </div>
-                <input type="password" placeholder="Enter Password" value={password} onChange = {(e)=>setPassword(e.target.value)}/>
-                {errors.password && <span className='text-sm text-red-500'>{errors.password}</span>}
+                    <input type="password" placeholder="Enter Password" className="bg-sky-200 border-b-2 border-gray-500 pl-1" value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                    {errors.password && <div className='mt-1 text-sm text-red-500'>{errors.password}</div>}
                 </div>
 
                 {/* Confirm Password */}
-                <div>
-                <div>
-                    <span>Confirm Password</span>
-                </div>
-                <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange = {(e)=>setConfirmPassword(e.target.value)}/>
-                {errors.confirmPassword && <span className='text-sm text-red-500'>{errors.confirmPassword}</span>}
+                <div>  
+                    <input type="password" placeholder="Confirm Password" className="bg-sky-200 border-b-2 border-gray-500 pl-1" value={confirmPassword} onChange = {(e)=>setConfirmPassword(e.target.value)}/>
+                    {errors.confirmPassword && <span className='text-sm text-red-500'>{errors.confirmPassword}</span>}
                 </div>
                 
 
                 {/* Sign Up Button */}
-                <button type="submit">
+                <div className="text-white">
+                    <button type="submit" className="w-[200px] h-[40px] leading-[40px] bg-blue-500 rounded-[15px] border border-blue-500 hover:bg-blue-950 transition ease-out duration-400">
                     {
                         loading ? <span className="loading loading-spinner loading-sm"></span> : "SIGN UP"
                     }
                     </button>
+                </div>
 
-                <span>Already have an account?{' '}
-                    <Link href="/login" className="text-blue-600 hover:text-blue-800 hover:underline">
-                        Login
-                    </Link>
-
-                </span>
+                {/* Log In Button */}
+                <div className="mt-10">Already have an account?{' '}</div>
+                <div className="">
+                    <button href="/login" className="w-[200px] h-[40px] leading-[40px] bg-white rounded-[15px] border border-white hover:bg-gray-100 transition ease-out duration-400">
+                        LOGIN
+                    </button>
+                </div>
                 </form>
-            </div>            
+                
+            </div>
+            
         </div>
     )
 }
