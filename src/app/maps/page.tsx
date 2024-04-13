@@ -95,7 +95,7 @@ return(
                 Currency: {user ? user.currency : "???"}
             </div>            
         </nav>
-        <main className="flex flex-col text-center bg-blue-300 flex-auto">
+        <main className="flex flex-col text-center flex-auto bg-[url('/menu-bg-mobile.png')] bg-cover bg-no-repeat">
             
             <div className="mt-5 grid place-items-center h-[50px] text-xl">
                 Click Below to Start a Mission!
@@ -116,16 +116,14 @@ return(
                     <input value={publicID} onChange ={(e)=>setPublicID(e.target.value)}></input>
                     <button>Cash Out!</button>
                 </form>
-                
-
             </div>
-
+            <div className="">
+                <button className="mt-2 text-s bg-white border w-[100px] h-[30px] border-black rounded-[15px] border-white" onClick={handleLogout}>
+                    Log Out
+                </button>  
+            </div>
+           
         </main>
-        <footer className="border-t-2 border-black grid place-items-center py-1 bg-gray-100">
-                <button className="text-s bg-white border w-[100px] h-[30px] border-black rounded-[15px] border-white" onClick={handleLogout}>
-                Log Out
-                </button>
-        </footer>
     </div>
 )
 }
