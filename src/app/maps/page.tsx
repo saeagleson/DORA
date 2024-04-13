@@ -8,10 +8,11 @@ import { firestore, app} from '../firebase'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation';
 import { doc, getDoc } from 'firebase/firestore';
+import GoogleMaps from '../components/GoogleMaps';
 
 const Maps = () => {
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState<any>({});
     const auth = getAuth(app);
     const router = useRouter();
 
@@ -35,7 +36,7 @@ const Maps = () => {
         return () => unsubscribe();
       }, [auth, router]); 
 
-    const handleLogout=(e)=>{
+    const handleLogout=(e:any)=>{
         e.preventDefault();
         signOut(auth).then(()=>{
             router.push('/login');
@@ -64,8 +65,13 @@ const Maps = () => {
                 </div>
 
                 {/* Map Goes Here*/}
+<<<<<<< HEAD
                 <div className="grid place-items-center flex-auto font-bold text-[30px]">
                     
+=======
+                <div className="grid place-items-center">
+                    <GoogleMaps/>
+>>>>>>> 05db70b8885a75fe2baa9ed2e6d69972aca7e860
                 </div>
             </main>
         </div>

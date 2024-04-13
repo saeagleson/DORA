@@ -9,18 +9,16 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
 
-    const[email, setEmail] = useState('');
-    const[password, setPassword] = useState('');
+    const[email, setEmail] = useState<string>('');
+    const[password, setPassword] = useState<string>('');
     // Added name, email, and password to errors (may cause errors)
-    const[errors, setErrors] = useState({});
-    const[loading, setLoading] = useState(false);
-    const[loggedIn, setLoggedIn] = useState(false);
-    const[avatarUrl,setAvatar] = useState('');
+    const[errors, setErrors] = useState<{email:string;password:string}>({email:'',password:''});
+    const[loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
     const validateForm=()=>{
         const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const newErrors={};
+        const newErrors:any={};
 
         if(!email.trim() || !emailRegex.test(email)){
             newErrors.email = 'Email is invalid!';
@@ -35,7 +33,7 @@ const Login = () => {
         }
     }
 
-    const handleSubmit=async(e)=>{
+    const handleSubmit=async(e:any)=>{
         e.preventDefault();
         setLoading(true);
         try{
@@ -50,7 +48,7 @@ const Login = () => {
             if(user){
                 router.push('/maps');
             }
-            setErrors({});
+            setErrors({email:'', password:''});
 
             alert("Logged In Sucessfully :)");
         }catch(error){
@@ -60,44 +58,52 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <div className=''>
+        <div className="h-screen grid place-items-center bg-[url('/hd-nature.jpg')] bg-cover bg-no-repeat">
+            <div className="flex flex-col w-full overflow-x-hidden mx-auto p-6 text-center font-['Comic Sans'] md:text-xl">
                 
-                <span>Log In</span>
-                <form onSubmit={handleSubmit} className="w-[200px] flex flex-col gap-5">
+                {/* DORA (title) */}
+                <div className="text-white  font-bold text-5xl md:text-7xl mb-32">DORA</div>
+
+                {/* Sign Up (header)) */}
+
+                <div className="bg-white rounded-lg p-8">
+
+                <header className="text-blue-500 font-bold text- text-xl">Log In</header>
+                <form onSubmit={handleSubmit} className="">
+
+                <div className="flex flex-col gap-6">
 
                 {/* Email */}
                 <div>
-                <label>
-                    <span>Email</span>
-                </label>
-                <input type="email" placeholder="Enter Email" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
+                <input type="email" placeholder="Enter Email" className="mt-7 bg-white border-b-2 border-gray-500 pl-1 focus:outline-none focus:border-blue-500" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
                 {errors.email && <span className='text-sm text-red-500'>{errors.email}</span>}
                 </div>
 
                 {/* Password */}
                 <div>
-                <label>
-                    <span>Password</span>
-                </label>
-                <input type="password" placeholder="Enter Password" value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                <input type="password" placeholder="Enter Password" className="bg-white border-b-2 border-gray-500 pl-1 focus:outline-none focus:border-blue-500" value={password} onChange = {(e)=>setPassword(e.target.value)}/>
                 {errors.password && <span className='text-sm text-red-500'>{errors.password}</span>}
                 </div>
 
+                </div>
+
                 {/* Sign Up Button */}
-                <button type="submit">
+                <div className="text-white">
+                <button type="submit" className="w-[200px] h-[40px] leading-[40px] m-6 bg-blue-500 rounded-[15px] border border-blue-500 hover:bg-blue-950 transition ease-out duration-400 shadow-lg shadow-blue-500/50">
                     {
-                        loading ? "Loading..." : "Login"
+                        loading ? "Loading..." : "LOGIN"
                     }
                     </button>
-
-                <span>Don't have an Account?{' '}
-                    <Link href="/" className="text-blue-600 hover:text-blue-800 hover:underline">
-                        Register
+                </div>
+                
+                <div className="">Don&apos;t have an Account?{' '}</div>
+                    <Link href="/" className="mx-auto w-[200px] h-[40px] leading-[40px] bg-white rounded-[15px] border border-white hover:bg-gray-100 transition ease-out duration-400 ">
+                        REGISTER
                     </Link>
 
-                </span>
                 </form>
+
+                </div>
             </div>            
         </div>
     )

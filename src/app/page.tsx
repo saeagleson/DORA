@@ -13,18 +13,17 @@ const Register = () => {
 
     const[username, setUsername] = useState<string>('');
 
-    const[email, setEmail] = useState('');
-    const[password, setPassword] = useState('');
-    const[confirmPassword, setConfirmPassword] = useState('');
+    const[email, setEmail] = useState<string>('');
+    const[password, setPassword] = useState<string>('');
+    const[confirmPassword, setConfirmPassword] = useState<string>('');
     // Added name, email, and password to errors (may cause errors)
-    const[errors, setErrors] = useState({});
-    const[loading, setLoading] = useState(false);
-    const[avatarUrl,setAvatar] = useState('');
+    const[errors, setErrors] = useState<{username:string; email:string; password:string; confirmPassword:string}>({username:'',email:'',password:'',confirmPassword:''});
+    const[loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
     const validateForm=()=>{
         const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const newErrors={};
+        const newErrors:any = {};
 
         if(!username.trim()){
           newErrors.username='Username is required!';
@@ -45,7 +44,7 @@ const Register = () => {
         }
     }
 
-    const handleSubmit=async(e)=>{
+    const handleSubmit=async(e:any)=>{
         e.preventDefault();
         setLoading(true);
         try{
@@ -63,7 +62,7 @@ const Register = () => {
                 email,
             })
             router.push('/maps');
-            setErrors({});
+            setErrors({username:'', email:'', password:'', confirmPassword:''});
 
             alert("Registered sucessfully :)");
         }catch(error){
@@ -77,64 +76,69 @@ const Register = () => {
     }
 
     return (
-        <div>
-            <div className=''>
+        <div className="h-screen grid place-items-center bg-[url('/hd-nature.jpg')] bg-cover bg-no-repeat">
+            <div className="flex flex-col w-full overflow-x-hidden mx-auto p-6 text-center font-['Comic Sans'] md:text-xl">
                 
-                <span>Register</span>
-                <form onSubmit={handleSubmit} className="w-[200px] flex flex-col gap-5">
+                {/* DORA (title) */}
+                <div className="text-white font-bold text-5xl md:text-8xl mb-32">DORA</div>
+                
+                {/* Sign Up (header)) */}
+                <div className="bg-white rounded-lg p-8">
 
-                {/* Username */}
-                <div>
-                    <label>
-                        <span>Username</span>
-                    </label>
-                    <input type="text" placeholder="Enter Username" value={username} onChange={(e)=>setUsername(capitalizeFirstLetter(e.target.value.trim()))}/>
-                    {errors.username && <span className='text-sm text-red-600'>{errors.username}</span>}
-                </div>
+                <header className="text-blue-500 font-bold text- text-xl">Sign Up Now</header>
+                <form onSubmit={handleSubmit} className="">
+                
+                <div className="flex flex-col gap-6">
 
-                {/* Email */}
-                <div>
-                <label>
-                    <span>Email</span>
-                </label>
-                <input type="email" placeholder="Enter Email" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
-                {errors.email && <span className='text-sm text-red-500'>{errors.email}</span>}
-                </div>
+                  {/* Username */}
+                  <div className="mt-7 text-black">                
+                      <input type="text" placeholder="Enter Username" className="bg-white border-b-2 border-gray-500 pl-1 focus:outline-none focus:border-blue-500" value={username} onChange={(e)=>setUsername(capitalizeFirstLetter(e.target.value.trim()))}/>
+                      {errors.username && <div className='mt-1 text-sm text-red-500'>{errors.username}</div>}
+                  </div>
 
-                {/* Password */}
-                <div>
-                <label>
-                    <span>Password</span>
-                </label>
-                <input type="password" placeholder="Enter Password" value={password} onChange = {(e)=>setPassword(e.target.value)}/>
-                {errors.password && <span className='text-sm text-red-500'>{errors.password}</span>}
-                </div>
+          
+                  {/* Email */}
+                  <div>
+                      <input type="email" placeholder="Enter Email" className="bg-white border-b-2 border-gray-500 pl-1 focus:outline-none focus:border-blue-500" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
+                      {errors.email && <div className='mt-1 text-sm text-red-500'>{errors.email}</div>}
+                  </div>
 
-                {/* Confirm Password */}
-                <div>
-                <label>
-                    <span>Confirm Password</span>
-                </label>
-                <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange = {(e)=>setConfirmPassword(e.target.value)}/>
-                {errors.confirmPassword && <span className='text-sm text-red-500'>{errors.confirmPassword}</span>}
+                  {/* Password */}
+                  <div>
+                      <input type="password" placeholder="Enter Password" className="bg-white border-b-2 border-gray-500 pl-1 focus:outline-none focus:border-blue-500" value={password} onChange = {(e)=>setPassword(e.target.value)}/>
+                      {errors.password && <div className='mt-1 text-sm text-red-500'>{errors.password}</div>}
+                  </div>
+
+                  {/* Confirm Password */}
+                  <div>  
+                      <input type="password" placeholder="Confirm Password" className="bg-white border-b-2 border-gray-500 pl-1 focus:outline-none focus:border-blue-500" value={confirmPassword} onChange = {(e)=>setConfirmPassword(e.target.value)}/>
+                      {errors.confirmPassword && <span className='text-sm text-red-500'>{errors.confirmPassword}</span>}
+                  </div>
+
                 </div>
                 
-
                 {/* Sign Up Button */}
-                <button type="submit">
+                <div className="text-white">
+                    <button type="submit" className="w-[200px] h-[40px] m-6 leading-[40px] bg-blue-500 rounded-[15px] border border-blue-500 hover:bg-blue-950 transition ease-out duration-400 shadow-lg shadow-blue-500/50">
                     {
-                        loading ? <span className="loading loading-spinner loading-sm"></span> : "Register"
+                        loading ? <span className="Loading..."></span> : "SIGN UP"
                     }
                     </button>
+                </div>
 
-                <span>Already have an Account?{' '}
-                    <Link href="/login" className="text-blue-600 hover:text-blue-800 hover:underline">
-                        Login
+                {/* Log In Button */}
+                <div className="">Already have an account?{' '}</div>
+                
+                    <Link href="/login" className="mx-auto w-[200px] h-[40px] leading-[40px] bg-white rounded-[15px] border border-white hover:bg-gray-100 transition ease-out duration-400">
+                        LOGIN
                     </Link>
-
-                </span>
+                
                 </form>
-            </div>            
+
+                </div>
+                
+            </div>
+            
         </div>
     )
 }
