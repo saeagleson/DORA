@@ -65,7 +65,7 @@ const Maps = () => {
 
                 {/* Map Goes Here*/}
                 <div className="grid place-items-center flex-auto font-bold text-[30px]">
-                    MAP GOES HERE!!!
+                    
                 </div>
             </main>
         </div>
