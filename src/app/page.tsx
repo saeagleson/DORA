@@ -87,7 +87,7 @@ const Register = () => {
                 <div className="text-white font-bold text-5xl md:text-8xl mb-32">DORA</div>
                 
                 {/* Sign Up (header)) */}
-                <div className="bg-white rounded-lg p-8">
+                <div className="bg-white rounded-lg p-8" style={{maxWidth: 'maxContent', margin: 'auto'}}>
 
                 <header className="text-blue-500 font-bold text- text-xl">Sign Up Now</header>
                 <form onSubmit={handleSubmit} className="">
