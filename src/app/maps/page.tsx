@@ -49,7 +49,7 @@ const Maps = () => {
         })
     }
 
-    const CashOut = async(e) => {
+    const CashOut = async(e:any) => {
         e.preventDefault();
         onAuthStateChanged(auth, async (user) => {
             if(user)
@@ -81,6 +81,9 @@ const Maps = () => {
             </nav>
             <main className="flex flex-col text-center bg-blue-300 flex-auto">
                 
+                <div className="text-end p-3">
+                    Currency: {user ? user.currency : "???"}
+                </div>
                 <div className="grid place-items-center h-[50px] text-[25px]">
                     Click Below to Start a Mission!
                 </div>
