@@ -88,61 +88,44 @@ const Register = () => {
 
     return (
         <div>
-            <div className=''>
+            <div className="max-w-[400px] w-full mx-auto mt-10 bg-blue-100 p-6 text-center font-['Aptos (Body)']">
                 
-                <span>Register</span>
-                <form onSubmit={handleSubmit} className="w-[200px] flex flex-col gap-5">
+                <div className="mt-10 text-4xl">DORA</div>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
 
                 {/* Username */}
                 <div>
-                    <label>
+                    <div>
                         <span>Username</span>
-                    </label>
+                    </div>
                     <input type="text" placeholder="Enter Username" value={username} onChange={(e)=>setUsername(capitalizeFirstLetter(e.target.value.trim()))}/>
                     {errors.username && <span className='text-sm text-red-600'>{errors.username}</span>}
                 </div>
 
-                {/* First Name */}
-                <div>
-                    <label>
-                        <span>First Name</span>
-                    </label>
-                    <input type="text" placeholder="Enter First Name" value={firstName} onChange={(e)=>setFirstName(capitalizeFirstLetter(e.target.value.trim()))}/>
-                    {errors.firstName && <span className='text-sm text-red-600'>{errors.firstName}</span>}
-                </div>
-
-                {/* Last Name */}
-                <div>
-                    <label>
-                        <span>Last Name</span>
-                    </label>
-                    <input type="text" placeholder="Enter Last Name" value={lastName} onChange={(e)=>setLastName(capitalizeFirstLetter(e.target.value.trim()))}/>
-                    {errors.lastName && <span className='text-sm text-red-600'>{errors.lastName}</span>}
-                </div>
-
+        
                 {/* Email */}
                 <div>
-                <label>
+                <div>
                     <span>Email</span>
-                </label>
+                </div>
                 <input type="email" placeholder="Enter Email" value={email} onChange ={(e)=>setEmail(e.target.value)}/>
                 {errors.email && <span className='text-sm text-red-500'>{errors.email}</span>}
                 </div>
 
                 {/* Password */}
                 <div>
-                <label>
+                <div>
                     <span>Password</span>
-                </label>
+                </div>
                 <input type="password" placeholder="Enter Password" value={password} onChange = {(e)=>setPassword(e.target.value)}/>
                 {errors.password && <span className='text-sm text-red-500'>{errors.password}</span>}
                 </div>
 
                 {/* Confirm Password */}
                 <div>
-                <label>
+                <div>
                     <span>Confirm Password</span>
-                </label>
+                </div>
                 <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange = {(e)=>setConfirmPassword(e.target.value)}/>
                 {errors.confirmPassword && <span className='text-sm text-red-500'>{errors.confirmPassword}</span>}
                 </div>
