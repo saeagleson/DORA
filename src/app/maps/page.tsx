@@ -84,48 +84,50 @@ const Maps = () => {
     }
 
 
-
-    return(
-        <div className="flex flex-col h-screen font-['Comic Sans']">
-            <nav className="text-center border border-b-2 border-black h-auto p-5">
-            <p className="text-[50px]">
-                Welcome, {user ? user.username : "???"}
-            </p>
+return(
+    <div className="flex flex-col h-screen font-['Comic Sans']">
+        <nav className="grid grid-cols-2 border-b-2 border-black h-auto px-1">
+            <div className="text-xl p-3">
+                {user ? user.username : "???"}
+            </div>
+                             
+            <div className="text-end p-4 pr-1">
+                Currency: {user ? user.currency : "???"}
+            </div>            
+        </nav>
+        <main className="flex flex-col text-center bg-blue-300 flex-auto">
             
-            <button className="border border-black text-[20px]" onClick={handleLogout}>
-                Log Out!
-            </button>
-            </nav>
-            <main className="flex flex-col text-center bg-blue-300 flex-auto">
-                
-                <div className="text-end p-3">
-                    Currency: {user ? user.currency : "???"}
-                </div>
-                <div className="grid place-items-center h-[50px] text-[25px]">
-                    Click Below to Start a Mission!
-                </div>
+            <div className="mt-5 grid place-items-center h-[50px] text-[25px]">
+                Click Below to Start a Mission!
+            </div>
 
-                
-                <div className="h-3/4 flex justify-center items-center">
-                    <div className="h-full w-full px-5">
-                        {/* Map Goes Here*/}
-                        <div className="h-full grid place-items-center">
-                            <GoogleMaps missions={missions}/>
-                        </div>
+            
+            <div className="h-5/6 flex justify-center items-center">
+                <div className="h-full w-full px-5">
+                    {/* Map Goes Here*/}
+                    <div className="h-full grid place-items-center">
+                        <GoogleMaps missions={missions}/>
                     </div>
                 </div>
+            </div>
 
-                <div>
-                    <form onSubmit={CashOut}>
-                        <input value={publicID} onChange ={(e)=>setPublicID(e.target.value)}></input>
-                        <button>Cash Out!</button>
-                    </form>
-                    
+            <div className="mt-3">
+                <form onSubmit={CashOut}>
+                    <input value={publicID} onChange ={(e)=>setPublicID(e.target.value)}></input>
+                    <button>Cash Out!</button>
+                </form>
+                
 
-                </div>
-            </main>
-        </div>
-    )
+            </div>
+
+        </main>
+        <footer className="border-t-2 border-black grid place-items-center py-1 bg-gray-100">
+                <button className="text-s bg-white border w-[100px] h-[30px] border-black rounded-[15px] border-white" onClick={handleLogout}>
+                Log Out
+                </button>
+        </footer>
+    </div>
+)
 }
 
 export default Maps;
