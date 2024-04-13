@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { firestore, app} from '../firebase'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation';
-import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
+import { doc, getDoc, collection, getDocs, updateDoc } from 'firebase/firestore';
 import GoogleMaps from '../components/GoogleMaps';
 
 const Maps = () => {
@@ -17,6 +17,8 @@ const Maps = () => {
 
     const auth = getAuth(app);
     const router = useRouter();
+
+    const [publicID, setPublicID] = useState('');
 
     useEffect(() => {
         // Use onAuthStateChanged to listen for changes in authentication state
@@ -49,6 +51,8 @@ const Maps = () => {
         })
     }
 
+
+    
     useEffect(() => {
         // Fetch all missions from Firestore
         const fetchMissions = async () => {
@@ -60,6 +64,25 @@ const Maps = () => {
 
         fetchMissions(); // Call fetchMissions on component mount
     }, []);
+
+    const CashOut = async(e) => {
+        e.preventDefault();
+        onAuthStateChanged(auth, async (user) => {
+            if(user)
+            {
+                // Changes User info
+                const docRef = doc(firestore, "users", user.uid);
+                updateDoc(docRef, {
+                    publicID: publicID,
+                })
+                console.log("Profile Updated Successfully");
+            }
+            else {
+                console.log("Error");
+            }
+        });
+    }
+
 
 
     return(
@@ -82,6 +105,14 @@ const Maps = () => {
                 {/* Map Goes Here*/}
                 <div className="grid place-items-center">
                     <GoogleMaps missions={missions}/>
+                </div>
+                <div>
+                    <form onSubmit={CashOut}>
+                        <input value={publicID} onChange ={(e)=>setPublicID(e.target.value)}></input>
+                        <button>Cash Out!</button>
+                    </form>
+                    
+
                 </div>
             </main>
         </div>

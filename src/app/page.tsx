@@ -16,6 +16,8 @@ const Register = () => {
     const[email, setEmail] = useState<string>('');
     const[password, setPassword] = useState<string>('');
     const[confirmPassword, setConfirmPassword] = useState<string>('');
+    const[publicID,setPublicID] = useState<string>('');
+    const[currency,setCurrency] = useState(0)
     // Added name, email, and password to errors (may cause errors)
     const[errors, setErrors] = useState<{username:string; email:string; password:string; confirmPassword:string}>({username:'',email:'',password:'',confirmPassword:''});
     const[loading, setLoading] = useState<boolean>(false);
@@ -60,6 +62,8 @@ const Register = () => {
             await setDoc(docRef,{
                 username,
                 email,
+                publicID,
+                currency,
             })
             router.push('/maps');
             setErrors({username:'', email:'', password:'', confirmPassword:''});
