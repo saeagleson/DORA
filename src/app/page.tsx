@@ -90,12 +90,16 @@ const Register = () => {
         <div>
             <div className="max-w-[400px] w-full mx-auto mt-10 bg-blue-100 p-6 text-center font-['Aptos (Body)']">
                 
+                {/* DORA (title) */}
                 <div className="mt-10 text-4xl">DORA</div>
+
+                {/* Register (header)) */}
+                <header className="mt-9 text-xl">Sign Up Now</header>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
 
                 {/* Username */}
                 <div>
-                    <div>
+                    <div className="mt-7 text-black text-[15px] font-['Lucida Sans']">
                         <span>Username</span>
                     </div>
                     <input type="text" placeholder="Enter Username" value={username} onChange={(e)=>setUsername(capitalizeFirstLetter(e.target.value.trim()))}/>
@@ -134,11 +138,11 @@ const Register = () => {
                 {/* Sign Up Button */}
                 <button type="submit">
                     {
-                        loading ? <span className="loading loading-spinner loading-sm"></span> : "Register"
+                        loading ? <span className="loading loading-spinner loading-sm"></span> : "SIGN UP"
                     }
                     </button>
 
-                <span>Already have an Account?{' '}
+                <span>Already have an account?{' '}
                     <Link href="/login" className="text-blue-600 hover:text-blue-800 hover:underline">
                         Login
                     </Link>
