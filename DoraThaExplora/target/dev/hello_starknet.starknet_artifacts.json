@@ -1,0 +1,1 @@
+{"version":1,"contracts":[{"id":"ercl2star3ffi","package_name":"hello_starknet","contract_name":"SimpleStorage","module_path":"hello_starknet::contract::hello_starknet::SimpleStorage","artifacts":{"sierra":"hello_starknet_SimpleStorage.contract_class.json","casm":null}}]}

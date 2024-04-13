@@ -1,0 +1,13 @@
+[package]
+name = "cairo-compile-project"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+cairo-lang = "0.1.0"
+
+
+
+[[bin]]
+name = "cairo-compile"
+path = "src/contract/hello_starknet.cairo"
