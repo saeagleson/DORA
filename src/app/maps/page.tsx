@@ -7,12 +7,14 @@ import { useState, useEffect } from 'react';
 import { firestore, app} from '../firebase'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import GoogleMaps from '../components/GoogleMaps';
 
 const Maps = () => {
 
     const [user, setUser] = useState<any>({});
+    const [missions, setMissions] = useState<any[]>([]);
+
     const auth = getAuth(app);
     const router = useRouter();
 
@@ -47,6 +49,19 @@ const Maps = () => {
         })
     }
 
+    useEffect(() => {
+        // Fetch all missions from Firestore
+        const fetchMissions = async () => {
+            const missionsCollectionRef = collection(firestore, 'missions');
+            const missionsSnap = await getDocs(missionsCollectionRef);
+            const missionsData = missionsSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            setMissions(missionsData);
+        };
+
+        fetchMissions(); // Call fetchMissions on component mount
+    }, []);
+
+
     return(
         <div className="flex flex-col h-screen">
             <nav className="text-center border border-b-2 border-black h-auto p-5">
@@ -66,7 +81,7 @@ const Maps = () => {
 
                 {/* Map Goes Here*/}
                 <div className="grid place-items-center">
-                    <GoogleMaps/>
+                    <GoogleMaps missions={missions}/>
                 </div>
             </main>
         </div>
