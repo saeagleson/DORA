@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function MapIcon({ map }) {
+function MapIcon({ map, markerItem }) {
   useEffect(() => {
     if (!map) return;
 
