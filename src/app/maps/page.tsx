@@ -47,19 +47,27 @@ const Maps = () => {
     }
 
     return(
-        <div>
-            <p>
-                MAP GOES HERE
+        <div className="flex flex-col h-screen">
+            <nav className="text-center border border-b-2 border-black h-auto p-5">
+            <p className="text-[50px]">
+                Welcome, {user ? user.username : "???"}
             </p>
-            <p>
-                Username:
-                {
-                    user ? user.username : "???"
-                }
-            </p>
-            <button onClick={handleLogout}>
+            
+            <button className="border border-black text-[20px]" onClick={handleLogout}>
                 Log Out!
             </button>
+            </nav>
+            <main className="flex flex-col text-center bg-blue-300 flex-auto">
+                
+                <div className="grid place-items-center h-[50px] text-[25px]">
+                    Click Below to Start a Mission!
+                </div>
+
+                {/* Map Goes Here*/}
+                <div className="grid place-items-center flex-auto font-bold text-[30px]">
+                    MAP GOES HERE!!!
+                </div>
+            </main>
         </div>
     )
 }
