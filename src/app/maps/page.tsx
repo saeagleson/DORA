@@ -8,6 +8,7 @@ import { firestore, app} from '../firebase'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation';
 import { doc, getDoc } from 'firebase/firestore';
+import GoogleMaps from '../components/GoogleMaps';
 
 const Maps = () => {
 
@@ -64,8 +65,8 @@ const Maps = () => {
                 </div>
 
                 {/* Map Goes Here*/}
-                <div className="grid place-items-center flex-auto font-bold text-[30px]">
-                    MAP GOES HERE!!!
+                <div className="grid place-items-center">
+                    <GoogleMaps/>
                 </div>
             </main>
         </div>
