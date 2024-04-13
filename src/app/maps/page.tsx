@@ -95,14 +95,14 @@ return(
                 Currency: {user ? user.currency : "???"}
             </div>            
         </nav>
-        <main className="flex flex-col text-center flex-auto bg-[url('/menu-bg-mobile.png')] bg-cover bg-no-repeat">
+        <main className="flex flex-col text-center flex-auto bg-[url('/menu-bg-mobile.png')] lg:bg-[url('/menu-bg.png')] bg-cover bg-no-repeat">
             
-            <div className="mt-5 grid place-items-center h-[50px] text-xl">
+            <div className="mt-5 grid place-items-center h-[50px] font-bold text-gray-300 text-xl">
                 Click Below to Start a Mission!
             </div>
 
             
-            <div className="h-5/6 flex justify-center items-center">
+            <div className="h-4/5 flex justify-center items-center">
                 <div className="h-full w-full px-5">
                     {/* Map Goes Here*/}
                     <div className="h-full grid place-items-center">
@@ -111,14 +111,14 @@ return(
                 </div>
             </div>
 
-            <div className="mt-3">
+            <div className="mt-3 ">
                 <form onSubmit={CashOut}>
                     <input value={publicID} onChange ={(e)=>setPublicID(e.target.value)}></input>
-                    <button>Cash Out!</button>
+                    <button className="pl-2 text-gray-100 focus:outline-none">Cash Out!</button>
                 </form>
             </div>
             <div className="">
-                <button className="mt-2 text-s bg-white border w-[100px] h-[30px] border-black rounded-[15px] border-white" onClick={handleLogout}>
+                <button className="my-3 text-s bg-white border w-[100px] h-[30px] border-black rounded-[15px] border-white transition ease-out duration-400 shadow-md shadow-gray-500/50" onClick={handleLogout}>
                     Log Out
                 </button>  
             </div>
