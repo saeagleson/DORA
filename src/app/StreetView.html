@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Street View Example</title>
+  <!-- Load the Google Maps JavaScript API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKMGAPKMx6OJj3a4DhFXCDL0IlE_TMPok&callback=initMap" async defer></script>
+  <style>
+    #street-view {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Street View Example</h1>
+  <!-- Create a div to hold the Street View panorama -->
+  <div id="street-view"></div>
+  <script>
+    // Initialize the Street View panorama
+    function initMap() {
+      var streetViewOptions = {
+        position: {lat: 40.7128, lng: -74.0060}, // Set the location of the panorama
+        pov: {
+          heading: 0, // Set the initial heading (0 = North, 90 = East, 180 = South, 270 = West)
+          pitch: 0 // Set the initial pitch (0 = straight ahead, +90 = looking up, -90 = looking down)
+        }
+      };
+
+      var streetViewPanorama = new google.maps.StreetViewPanorama(
+        document.getElementById('street-view'),
+        streetViewOptions
+      );
+    }
+  </script>
+</body>
+</html>
