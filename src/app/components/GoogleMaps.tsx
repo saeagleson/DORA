@@ -1,9 +1,11 @@
 'use client'
-import React, { useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
+import MapIcon from './MapIcon'
 
 const GoogleMaps = () => {
-    
+
+    const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
     const mapRef = React.useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -21,7 +23,7 @@ const GoogleMaps = () => {
             };
 
             // MARKER
-            36.06929715362643, -94.17600312141396
+            // 36.06929715362643, -94.17600312141396
 
             const options: google.maps.MapOptions = {
                 center: locationInMap,
@@ -30,6 +32,7 @@ const GoogleMaps = () => {
             };
 
             const map = new Map(mapRef.current as HTMLDivElement, options);
+            setMapInstance(map);
         };
 
         initializeMap();
@@ -38,6 +41,7 @@ const GoogleMaps = () => {
     return(
         <div className="h-[600px] w-[800px]" ref={mapRef}>
             Google Maps
+            {mapInstance && <MapIcon map={mapInstance} />}
         </div>
     )
 }
